@@ -59,6 +59,8 @@ export default {
         "true-count",
         this.answers.filter((x) => x.val == true).length
       );
+
+      // console.log();
     },
   },
 };

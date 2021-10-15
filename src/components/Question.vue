@@ -1,23 +1,24 @@
 <template>
-  <div class="row my-5">
+  <div class="row my-5 px-2">
     <div class="col-12 col-md-7  mx-auto px-0 text-start">
       <h3 class="">Question {{ idx + 1 }}: {{ question.question }}</h3>
     </div>
     <div
       :key="choice.Id"
-      class="col-12 col-md-7 mx-auto my-2 border text-start rounded-1 choice-div shadow-sm"
+      class="col-12 col-md-7 mx-auto my-2 border text-start rounded-1 choice-div shadow-sm p-0"
       v-for="(choice, idx) in question.choices"
       :style="[
         selectedChoise == choice.id
-          ? { background: 'lightgrey' }
+          ? { background: 'rgb(230, 230, 230)' }
           : { background: 'white' },
       ]"
     >
       <Choice
         :choice="choice"
         :idx="idx"
-        @clicked-zart="selectedValue"
+        @selected-value="selectedValue"
         :sc="selectedChoise"
+        :showAnswers="showAnswers"
       />
     </div>
   </div>
@@ -47,14 +48,7 @@ export default {
         },
       ];
       this.$emit("selam", array);
-
-      // console.log(this.selectedChoise);
     },
   },
 };
 </script>
-<style scoped>
-.isTrue {
-  background: green;
-}
-</style>

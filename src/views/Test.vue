@@ -1,4 +1,16 @@
 <template>
+  <div class="container" v-if="showAnswers">
+    <div class="row my-5 px-2">
+      <div
+        class="col-12 col-md-7 mx-auto px-0 text-start"
+        style="color:#4E9F3D"
+      >
+        <h2>Your score is: {{ this.tCount * 20 }} out of 100</h2>
+        <h3>You can see correct answers below</h3>
+      </div>
+    </div>
+  </div>
+
   <questions
     :questions="this.questions"
     @true-count="trueCount"
@@ -33,7 +45,8 @@ export default {
       this.tCount = value;
     },
     showResult() {
-      alert(this.tCount * 20);
+      // alert(this.tCount * 20);
+      window.scrollTo(0, 0);
       this.showAnswers = true;
     },
   },

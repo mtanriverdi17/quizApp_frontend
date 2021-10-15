@@ -2,9 +2,13 @@
   <div
     @click="changeBackground(this.choice.id)"
     class="py-2 d-flex choice-div  "
+    v-bind:class="{
+      'border-green': showAnswers && choice.isCorrect,
+      'border-none': !showAnswers && !choice.isCorrect,
+    }"
   >
-    <div class="circle">{{ idx + 1 }}</div>
-    <div class="choice-text mx-2">
+    <div class="circle mx-2">{{ idx + 1 }}</div>
+    <div class="choice-text mx-1">
       <span>{{ this.choice.choiceText }}</span>
     </div>
   </div>
@@ -16,13 +20,14 @@ export default {
     choice: Object,
     idx: Number,
     sc: Number,
+    showAnswers: Boolean,
   },
   data() {
     return {};
   },
   methods: {
     changeBackground(choiceId) {
-      this.$emit("clicked-zart", choiceId);
+      this.$emit("selected-value", choiceId);
     },
   },
 };
@@ -44,5 +49,8 @@ export default {
   display: flex; /* or inline-flex */
   align-items: center;
   justify-content: center;
+}
+.border-green {
+  border: 1px solid #4e9f3d;
 }
 </style>
